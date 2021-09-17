@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
+const alphaUser = {
+  name: {
+    first: "Casey",
+    last: "Harding"
+  },
+  email: "case@case.com",
+  login: {
+    username: "CRHarding",
+    uuid: "1234abcd"
+  },
+  picture: {
+    medium: "https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/v1555925330/shape/mentalfloss/thor.jpg?itok=mjGxZSbN"
+  }
+}
+
 function App() {
+  const [user, setUser] = useState(alphaUser);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hello, world!</h1>
     </div>
   );
 }
