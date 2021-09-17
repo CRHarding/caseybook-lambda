@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import axios from 'axios';
 
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import Header from './Components/Header/Header';
+import Profile from './Components/Profile/Profile';
+import Users from './Components/Users/Users';
 
 const alphaUser = {
   name: {
@@ -22,15 +25,28 @@ const alphaUser = {
 
 function App() {
   const [user, setUser] = useState(alphaUser);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    async function getUsers() {
+      const users = await axios.get('https://randomuser.me/api/?results=5');
+      setUsers(users.data.results);
+    }
+
+    getUsers();
+  }, [])
 
   return (
     <div className="App">
       <Header />
       <h1>CaseyBook</h1>
       <h3>It's like Facebook, only made by a guy named Casey</h3>
-      <h4>{user.name.first} {user.name.last}</h4>
-      <h4>{user.login.username}</h4>
-      <img src={user.picture.medium} alt="thor, the thunder god" />
+      <Route path="/profile">
+        <Profile user={user} />
+      </Route>
+      <Route path="/users">
+        <Users users={users} />
+      </Route>
     </div>
   );
 }
