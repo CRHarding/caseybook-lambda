@@ -7,6 +7,7 @@ import { Route } from 'react-router-dom';
 import Header from './Components/Header/Header';
 import Profile from './Components/Profile/Profile';
 import Users from './Components/Users/Users';
+import PostForm from './Components/PostForm/PostForm';
 
 const alphaUser = {
   name: {
@@ -21,7 +22,8 @@ const alphaUser = {
   picture: {
     medium: "https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/v1555925330/shape/mentalfloss/thor.jpg?itok=mjGxZSbN"
   },
-  friends: []
+  friends: [],
+  posts: []
 }
 
 function App() {
@@ -50,6 +52,13 @@ function App() {
     setUser(updatedUser);
   }
 
+  const onSubmit = (evt, post) => {
+    evt.preventDefault();
+    const updatedUser = user;
+    updatedUser.posts.push(post);
+    setUser(updatedUser);
+  }
+
   // filter => returns an array
   // find => returns the first entity that matches the query
   // BOTH do NOT mutate the array
@@ -60,10 +69,13 @@ function App() {
       <h1>CaseyBook</h1>
       <h3>It's like Facebook, only made by a guy named Casey</h3>
       <Route path="/profile">
-        <Profile user={user} addFriend={addFriend} />
+        <Profile user={user} addFriend={addFriend} alphaUser={alphaUser} />
       </Route>
       <Route path="/users">
         <Users users={users} addFriend={addFriend} />
+      </Route>
+      <Route path="/createpost">
+        <PostForm onSubmit={onSubmit} />
       </Route>
     </div>
   );
