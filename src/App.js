@@ -20,7 +20,8 @@ const alphaUser = {
   },
   picture: {
     medium: "https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/v1555925330/shape/mentalfloss/thor.jpg?itok=mjGxZSbN"
-  }
+  },
+  friends: []
 }
 
 function App() {
@@ -38,7 +39,15 @@ function App() {
 
   const addFriend = (id) => {
     const foundUser = users.find(searchUser => searchUser.login.uuid === id);
-    console.log(foundUser);
+    const userToFriend = 
+        { 
+          username: foundUser.login.username, 
+          uuid: foundUser.login.uuid
+        };
+      console.log(userToFriend);
+    const updatedUser = user;
+    updatedUser.friends.push(userToFriend);
+    setUser(updatedUser);
   }
 
   // filter => returns an array

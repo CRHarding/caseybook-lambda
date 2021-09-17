@@ -10,6 +10,9 @@ function Profile(props) {
                 onClick={() => props.addFriend(props.user.login.uuid)}
             >Add Friend</button>
             <img src={props.user.picture.medium} alt="thor, the thunder god" />
+            {props.user.friends && props.user.friends.map(friend => {
+                return <p>{friend.username}</p>
+            })}
         </div>
     )
 }
