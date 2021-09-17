@@ -36,16 +36,25 @@ function App() {
     getUsers();
   }, [])
 
+  const addFriend = (id) => {
+    const foundUser = users.find(searchUser => searchUser.login.uuid === id);
+    console.log(foundUser);
+  }
+
+  // filter => returns an array
+  // find => returns the first entity that matches the query
+  // BOTH do NOT mutate the array
+
   return (
     <div className="App">
       <Header />
       <h1>CaseyBook</h1>
       <h3>It's like Facebook, only made by a guy named Casey</h3>
       <Route path="/profile">
-        <Profile user={user} />
+        <Profile user={user} addFriend={addFriend} />
       </Route>
       <Route path="/users">
-        <Users users={users} />
+        <Users users={users} addFriend={addFriend} />
       </Route>
     </div>
   );

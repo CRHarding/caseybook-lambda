@@ -6,6 +6,9 @@ function Profile(props) {
         <div className="Profile">
             <h4>{props.user.name.first} {props.user.name.last}</h4>
             <h4>{props.user.login.username}</h4>
+            <button 
+                onClick={() => props.addFriend(props.user.login.uuid)}
+            >Add Friend</button>
             <img src={props.user.picture.medium} alt="thor, the thunder god" />
         </div>
     )
