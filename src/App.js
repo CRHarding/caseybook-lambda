@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
 
+import { Route, Link } from 'react-router-dom';
+
+import Header from './Components/Header/Header';
+
 const alphaUser = {
   name: {
     first: "Casey",
@@ -21,7 +25,12 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hello, world!</h1>
+      <Header />
+      <h1>CaseyBook</h1>
+      <h3>It's like Facebook, only made by a guy named Casey</h3>
+      <h4>{user.name.first} {user.name.last}</h4>
+      <h4>{user.login.username}</h4>
+      <img src={user.picture.medium} alt="thor, the thunder god" />
     </div>
   );
 }
